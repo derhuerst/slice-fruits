@@ -1,0 +1,39 @@
+{
+	"private": true,
+	"name": "slice-fruits",
+	"description": "A clone of a very popular iOS game.",
+	"version": "0.1.0",
+	"main": "index.js",
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"game"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/slice-fruits",
+	"repository": "derhuerst/slice-fruits",
+	"bugs": "https://github.com/derhuerst/slice-fruits/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=6"
+	},
+	"dependencies": {
+		"global": "^4.3.1",
+		"raf": "^3.3.0"
+	},
+	"devDependencies": {
+		"beefy": "^2.1.8",
+		"browserify": "^14.4.0",
+		"envify": "^4.1.0",
+		"es2020": "^1.1.9",
+		"uglify-es": "^3.1.2"
+	},
+	"scripts": {
+		"bundle": "env NODE_ENV=production browserify -t es2020 -t [ envify --NODE_ENV production ] index.js > bundle.js",
+		"minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
+		"build": "npm run bundle && npm run minify",
+		"dev": "env NODE_ENV=dev beefy index.js:bundle.min.js 3000 --live -- -t es2020 -t [ envify --NODE_ENV dev ]",
+		"prepublishOnly": "npm run build"
+	}
+}
