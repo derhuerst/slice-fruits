@@ -5,9 +5,12 @@ const window = require('global/window')
 const raf = require('raf')
 
 const getCanvas = require('./lib/get-canvas')
+const createTick = require('./lib/tick')
 const renderGame = require('./lib/render')
 
 const state = {
+	endOfLastBurst: 0,
+	fruits: []
 }
 
 const actions = {
@@ -20,6 +23,9 @@ canvas.style.top = '0'
 canvas.style.width = '100%'
 canvas.style.height = '100%'
 document.body.appendChild(canvas)
+
+const tick = createTick(state)
+setInterval(tick, 10)
 
 const render = () => {
 	const s = performance.now()
