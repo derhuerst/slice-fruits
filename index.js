@@ -11,8 +11,10 @@ const renderGame = require('./lib/render')
 const renderCutTrail = require('./lib/cut-trail')
 
 const state = {
+	lost: false,
 	endOfLastBurst: 0,
-	fruits: []
+	fruits: [],
+	bombs: []
 }
 
 const actions = {
