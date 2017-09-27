@@ -31,6 +31,8 @@ const tick = createTick(state)
 setInterval(tick, 10)
 
 const render = () => {
+	raf(render)
+
 	const s = performance.now()
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -40,8 +42,5 @@ const render = () => {
 	if (process.env.NODE_ENV === 'dev' && (t|0) >= 5) {
 		console.warn('rendering took', t|0, 'ms')
 	}
-
-	// raf(render) // todo
-	setTimeout(render, 100)
 }
 render()
